@@ -36,25 +36,34 @@ public class StatsWriter
                 int playerStatsIndex = stats.indexOf(playerStats);
                 if(playerStatsIndex == -1)
                 {
-                    // colorare la riga
-//                    CellStyle style = sheet.getWorkbook().createCellStyle();
-//                    style.setFillBackgroundColor(IndexedColors.AQUA.getIndex());
-//                    style.setFillPattern(CellStyle.BIG_SPOTS);
-//                    currentRow.setRowStyle(style);
-
                     final CellStyle style = sheet.getWorkbook().createCellStyle();
                     style.setBorderBottom(BorderStyle.DOUBLE);
                     style.setBorderTop(BorderStyle.DOUBLE);
                     style.setBorderLeft(BorderStyle.DOUBLE);
-//                    style.setLeftBorderColor();
                     style.setBorderRight(BorderStyle.DOUBLE);
                     currentRow.getCell(GIOCATORE_COLUMN_INDEX).setCellStyle(style);
                 }
                 else
                 {
                     playerStats = stats.get(playerStatsIndex);
+
                     Cell presenzeCell = currentRow.createCell(PRESENZE_COLUMN_INDEX);
                     presenzeCell.setCellValue(playerStats.getPresenze());
+
+                    Cell goalsCell = currentRow.createCell(GOALS_COLUMN_INDEX);
+                    goalsCell.setCellValue(playerStats.getGoal());
+
+                    Cell assistsCell = currentRow.createCell(ASSISTS_COLUMN_INDEX);
+                    assistsCell.setCellValue(playerStats.getAssists());
+
+                    Cell ammonizioniCell = currentRow.createCell(AMMONIZIONI_COLUMN_INDEX);
+                    ammonizioniCell.setCellValue(playerStats.getAmmonizioni());
+
+                    Cell espulsioniCell = currentRow.createCell(ESPULSIONI_COLUMN_INDEX);
+                    espulsioniCell.setCellValue(playerStats.getEspulsioni());
+
+                    Cell fantamediaCell = currentRow.createCell(FANTAMEDIA_COLUMN_INDEX);
+                    fantamediaCell.setCellValue(playerStats.getFantaMedia());
                 }
             }
             currentRowIndex++;
